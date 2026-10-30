@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Review and classify customer messages with the Enterprise Ingestion Firewall."
+    />
+    <title>Ingestion Firewall</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Workspace navigation">
+        <a class="brand" href="/" aria-label="Ingestion Firewall home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none">
+              <path d="M16 3 27 7v8c0 7.1-4.6 11.6-11 14C9.6 26.6 5 22.1 5 15V7l11-4Z" />
+              <path d="m11.5 15.8 3 3 6-6.2" />
+            </svg>
+          </span>
+          <span class="brand-copy">
+            <strong>Ingestion</strong>
+            <span>FIREWALL</span>
+          </span>
+        </a>
+
+        <button class="new-analysis" id="newAnalysis" type="button">
+          <span aria-hidden="true">＋</span>
+          New analysis
+          <kbd>⌘ K</kbd>
+        </button>
+
+        <div class="nav-caption">
+          <span>WORKSPACE</span>
+          <span class="live-dot" aria-hidden="true"></span>
+        </div>
+        <div class="history-heading">Recent analyses</div>
+        <nav class="conversation-list" id="conversationList" aria-label="Recent analyses">
+          <p class="empty-history">Your analyses will appear here.</p>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="privacy-note">
+            <span class="privacy-icon" aria-hidden="true">✳</span>
+            <div>
+              <strong>Private by design</strong>
+              <p>Session history stays in memory and clears when the server restarts.</p>
+            </div>
+          </div>
+          <div class="sidebar-meta">
+            <span class="avatar">EF</span>
+            <span class="sidebar-user">
+              <strong>Firewall workspace</strong>
+              <small>Local environment</small>
+            </span>
+            <span class="local-badge">LOCAL</span>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <div class="breadcrumb">
+            <span>Workspace</span>
+            <span class="breadcrumb-divider">/</span>
+            <strong>Message analysis</strong>
+          </div>
+          <div class="topbar-right">
+            <button class="new-mobile" id="mobileNewAnalysis" type="button">New analysis</button>
+            <span class="connection-state" id="connectionState">
+              <span class="connection-dot" aria-hidden="true"></span>
+              <span id="connectionLabel">Checking service</span>
+            </span>
+            <button class="icon-button" id="refreshButton" type="button" aria-label="Refresh service status" title="Refresh service status">
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M16.4 8a6.7 6.7 0 0 0-11.8-2L3 8m0-4v4h4m-3.4 4a6.7 6.7 0 0 0 11.8 2L17 12m0 4v-4h-4" />
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <section class="work-area" aria-live="polite">
+          <div class="welcome" id="welcomeState">
+            <div class="eyebrow"><span class="eyebrow-line"></span> TRUSTED MESSAGE INTAKE</div>
+            <h1>Every message,<br /><span>understood.</span></h1>
+            <p class="welcome-copy">
+              Screen incoming messages for intent, risk, and urgency before they
+              reach your team.
+            </p>
+
+            <div class="capability-row">
+              <div class="capability">
+                <span class="capability-icon violet" aria-hidden="true">
+                  <svg viewBox="0 0 20 20"><path d="M10 2.5 16.5 5v4.7c0 4.2-2.7 6.8-6.5 8.3-3.8-1.5-6.5-4.1-6.5-8.3V5L10 2.5Z" /><path d="m7.2 9.8 1.8 1.8 3.8-4" /></svg>
+                </span>
+                <span><strong>Risk screening</strong><small>Spot critical signals</small></span>
+              </div>
+              <div class="capability">
+                <span class="capability-icon blue" aria-hidden="true">
+                  <svg viewBox="0 0 20 20"><path d="M3 5.2h14M3 10h9m-9 4.8h14" /><circle cx="14.5" cy="10" r="2" /></svg>
+                </span>
+                <span><strong>Intent routing</strong><small>Know what they need</small></span>
+              </div>
+              <div class="capability">
+                <span class="capability-icon amber" aria-hidden="true">
+                  <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" /><path d="M10 6v4l2.5 1.5" /></svg>
+                </span>
+                <span><strong>Priority signals</strong><small>Respond at the right time</small></span>
+              </div>
+            </div>
+
+            <div class="suggestions">
+              <div class="suggestions-title">TRY A MESSAGE</div>
+              <div class="suggestion-list">
+                <button class="suggestion" type="button" data-prompt="Hi there! I need a little help.">
+                  <span class="suggestion-symbol">↗</span> A friendly greeting
+                </button>
+                <button class="suggestion" type="button" data-prompt="I was charged twice for my order and need help getting one payment refunded.">
+                  <span class="suggestion-symbol">↗</span> A billing concern
+                </button>
+                <button class="suggestion" type="button" data-prompt="My delivery is late. Can you tell me where my order is?">
+                  <span class="suggestion-symbol">↗</span> An order question
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="message-feed" id="messageFeed" hidden></div>
+          <div class="error-banner" id="errorBanner" role="alert" hidden></div>
+        </section>
+
+        <footer class="composer-wrap">
+          <form class="composer" id="messageForm">
+            <label class="sr-only" for="messageInput">Message to analyze</label>
+            <textarea
+              id="messageInput"
+              name="message"
+              rows="1"
+              maxlength="5000"
+              placeholder="Paste or type a message to analyze..."
+              required
+            ></textarea>
+            <div class="composer-toolbar">
+              <div class="composer-hint">
+                <span class="shield-mini" aria-hidden="true">◇</span>
+                Analysis is based only on the message you submit.
+                <span class="shortcut">Enter to send</span>
+              </div>
+              <div class="composer-actions">
+                <span class="char-count" id="charCount">0 / 5000</span>
+                <button class="send-button" id="sendButton" type="submit" aria-label="Analyze message">
+                  <span id="sendLabel">Analyze</span>
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5" /></svg>
+                </button>
+              </div>
+            </div>
+          </form>
+          <p class="disclaimer">
+            AI-generated analysis can be imperfect. Verify high-impact decisions before taking action.
+          </p>
+        </footer>
+      </main>
+    </div>
+    <script src="/static/script.js" defer></script>
+  </body>
+</html>
